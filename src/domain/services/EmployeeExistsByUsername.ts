@@ -1,4 +1,5 @@
 import {EmployeeRepository} from "../repositories/EmployeeRepository";
+import {Employee} from "../entities/Employee";
 
 export class EmployeeExistsByUsername {
   private readonly _employeeRepository: EmployeeRepository;
@@ -8,7 +9,7 @@ export class EmployeeExistsByUsername {
   }
 
   async run(username: string): Promise<Boolean> {
-    const employee = await this._employeeRepository.getByUsername(username);
+    const employee: (Employee | null) = await this._employeeRepository.getByUsername(username);
 
     return employee !== null;
   }
